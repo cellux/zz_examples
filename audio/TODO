@@ -1,0 +1,74 @@
+fluidtracker todo:
+
+*** shift+f2: save as
+
+opens a dialog box where it shows the current folder like this:
+
+/
+home/
+rb/
+projects/
+appbase/
+examples/
+audio/
+<- the cursor is here
+
+as I start typing, I get autocomplete suggestions which can be completed with Tab (with cycling through alternatives)
+
+if I auto-completed a directory, I also enter to it. if I press tab again, I cycle among alternatives, if I press something else, I select something inside the selected directory.
+
+alt-backspace deletes back to the last /, pressing alt-backspace repeatedly chdirs back towards root
+
+pressing enter finalizes the selection
+
+if it's an existing file, it asks for overwrite
+
+*** f2: save
+
+"save" if there is an associated file
+"save as" if there is none yet
+
+saved files get .flt extension (fluid tracker)
+
+*** pass path of flt file on command line to open it
+
+passing an sf2 file at the same time opens the flt and replaces the soundfont with the given one
+
+at the next save, the flt will refer to the new soundfont
+
+*** f3: load flt
+
+*** shift+f3: load soundfont
+
+*** f1: help
+
+opens as a read-only text pane, left/right to switch between pages
+
+*** f9/f10/f11/f12: edit event code / track code / pattern code / global code
+
+opens an editor in which I can edit Lua code for the above
+
+event code executes when an event is played
+
+stuff defined in track code can be used by all events of the track
+stuff defined in pattern code can be used in all tracks of the pattern and events of those tracks
+stuff defined in global code can be used anywhere
+
+when one of these codes are updated, the depending codes automatically use the updated definitions
+
+*** shift+f9: edit label code
+
+this code shall return a string which will be used as the 3-character label of the event
+can use anything defined in event/track/pattern/global code
+
+*** x/c/v
+
+x: cut event
+c: copy event
+v: paste event
+
+*** shift-selection
+
+holding down shift and moving selects an area
+
+x/c/v cuts/copies/pastes the selected area
