@@ -74,20 +74,21 @@ function M.main()
       log("GetAudioDeviceName(%d)=%s", i, sdl.GetAudioDeviceName(i))
    end
 
-   local engine, spec = audio.Engine {
+   local source = fluid.AudioSource(synth)
+   local device = audio.Device {
       freq = SAMPLE_RATE,
       channels = 2,
       samples = 1024,
+      source = source,
    }
 
+   local spec = device.spec
    log("SDL_OpenAudioDevice():")
    log("  freq=%d", spec.freq)
    log("  format=%d", spec.format)
    log("  channels=%d", spec.channels)
    log("  samples=%d", spec.samples)
    log("  size=%d", spec.size)
-
-   engine:add(fluid.AudioSource(synth))
 
    log("zsxdcvgbhnjm: notes from current octave")
    log("q2w3er5t6y7u: notes from next octave")
@@ -99,8 +100,8 @@ function M.main()
    log("ESC: quit")
    log()
 
-   log("starting audio engine")
-   engine:start()
+   log("starting audio device")
+   device:start()
    log("now play.")
 
    local octave = 5
@@ -120,10 +121,10 @@ function M.main()
 
    local function quit()
       keymapper:disable()
-      log("stopping audio engine")
-      engine:stop()
-      log("closing audio engine")
-      engine:delete()
+      log("stopping audio device")
+      device:stop()
+      log("closing audio device")
+      device:close()
       log("cleanup fluidsynth")
       synth:delete()
       settings:delete()

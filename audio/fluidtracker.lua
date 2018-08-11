@@ -673,16 +673,17 @@ function M.main()
    log("loading soundfont: %s", sf2_path)
    local sf_id = synth:sfload(sf2_path, true)
 
-   log("creating audio engine")
-   local engine = audio.Engine {
+   log("creating audio source")
+   local source = fluid.AudioSource(synth)
+   log("opening audio device")
+   local device = audio.Device {
       freq = SAMPLE_RATE,
       channels = 2,
       samples = 1024,
+      source = source,
    }
-   log("adding fluidsynth as an audio source")
-   engine:add(fluid.AudioSource(synth))
-   log("starting audio engine")
-   engine:start()
+   log("starting audio device")
+   device:start()
 
    log("creating keymapper")
    local keymapper = ui:KeyMapper()
@@ -691,10 +692,10 @@ function M.main()
    local top_level_keymap = {
       [sdl.SDLK_ESCAPE] = function()
          keymapper:disable()
-         log("stopping audio engine")
-         engine:stop()
-         log("deleting audio engine")
-         engine:delete()
+         log("stopping audio device")
+         device:stop()
+         log("closing audio device")
+         device:close()
          log("deleting synth")
          synth:delete()
          settings:delete()

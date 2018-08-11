@@ -34,15 +34,15 @@ local function play(path)
       frames = sfinfo.frames,
    }
    pf("Loaded %d frames, %d channels.", player.frames, player.channels)
-   local engine = audio.Engine()
+   local device = audio.Device {
+      source = player
+   }
    pf("Playing audio file...")
-   engine:add(player)
-   engine:start()
+   device:start()
    local end_signal = player:play()
    end_signal:poll()
-   engine:stop()
-   engine:remove(player)
-   engine:delete()
+   device:stop()
+   device:close()
 end
 
 local ap = argparser("aplay", "play audio file")
