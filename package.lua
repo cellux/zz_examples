@@ -9,7 +9,7 @@ return {
       "github.com/cellux/zz_sdl2",
       "github.com/cellux/zz_freetype",
       "github.com/cellux/zz_ui",
-      "github.com/cellux/zz_llvm",
+      --"github.com/cellux/zz_llvm",
       "github.com/cellux/zz_mathx",
    },
    mounts = { "assets" }
