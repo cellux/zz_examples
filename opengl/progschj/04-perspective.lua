@@ -2,6 +2,7 @@ local M = {}
 
 local ui = require('ui')
 local gl = require('gl')
+local glu = require('glu')
 local ffi = require('ffi')
 local bit = require('bit')
 local sched = require('sched')
@@ -19,7 +20,7 @@ function M.main()
 
    local FS = ffi.sizeof("GLfloat")
 
-   local rm = gl.ResourceManager()
+   local rm = glu.ResourceManager()
 
    local vertex_shader = rm:Shader(gl.GL_VERTEX_SHADER)
    vertex_shader:ShaderSource [[

@@ -5,6 +5,7 @@ return {
       "github.com/cellux/zz_sndfile",
       "github.com/cellux/zz_fluidsynth",
       "github.com/cellux/zz_gl",
+      "github.com/cellux/zz_glu",
       "github.com/cellux/zz_egl",
       "github.com/cellux/zz_sdl2",
       "github.com/cellux/zz_freetype",

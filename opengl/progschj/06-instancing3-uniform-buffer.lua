@@ -2,6 +2,7 @@ local M = {}
 
 local ui = require('ui')
 local gl = require('gl')
+local glu = require('glu')
 local sdl = require('sdl2')
 local ffi = require('ffi')
 local bit = require('bit')
@@ -198,7 +199,7 @@ function M.main()
    }
    window:show()
 
-   local rm = gl.ResourceManager()
+   local rm = glu.ResourceManager()
    local cube = Cube(rm)
 
    local function MathEngine(window)
