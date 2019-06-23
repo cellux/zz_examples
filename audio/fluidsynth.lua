@@ -113,8 +113,8 @@ function M.main()
    local min_prognum = 0
 
    local function log_channel_info(chan)
-      local info = synth:get_channel_info(chan)
-      log("sfont_id=%d bank=%d program=%d: %s", info.sfont_id, info.bank, info.program, info.name)
+      local info = synth:get_program(chan)
+      log("sfont_id=%d bank_num=%d preset_num=%d: %s", info.sfont_id, info.bank_num, info.preset_num, info.preset_name)
    end
 
    local keymapper = ui:KeyMapper()

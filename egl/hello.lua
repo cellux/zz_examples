@@ -69,8 +69,9 @@ function M.main()
       }
       local ctx = dpy:CreateContext(config, nil, attrib_list)
       ctx:MakeCurrent(surface, surface)
+      local running = true
       sched(function()
-         while true do
+         while running do
             local t = time.time()
             local r = 0.5 + 0.5*math.sin(t)
             local g = 0.5 + 0.5*math.sin(t*1.33)
@@ -78,12 +79,13 @@ function M.main()
             gl.glClearColor(r,g,b,1)
             gl.glClear(gl.GL_COLOR_BUFFER_BIT)
             surface:SwapBuffers()
-            sched.sleep(0.1)
+            sched.yield()
          end
       end)
       sched.on('sdl.keydown', function(evdata)
          if evdata.key.keysym.sym == sdl.SDLK_ESCAPE then
             sched.quit()
+            running = false
          end
       end)
       sched.on('sdl.quit', sched.quit)

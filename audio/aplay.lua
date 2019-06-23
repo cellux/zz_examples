@@ -40,7 +40,7 @@ local function play(path)
    pf("Playing audio file...")
    device:start()
    local end_signal = player:play()
-   end_signal:poll()
+   end_signal:wait()
    device:stop()
    device:close()
 end

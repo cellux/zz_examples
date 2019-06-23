@@ -51,7 +51,7 @@ function M.main()
    end
    sched(function()
       -- a primitive render loop
-      while true do
+      while sched.running() do
          now = sched.now
          -- we should redraw the screen here
          sched.wait(now+1/fps)
